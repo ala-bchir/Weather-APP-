@@ -1,0 +1,19 @@
+{
+  "name": "weather-app-",
+  "version": "1.0.0",
+  "description": "my first app using socket.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ala-bchir/Weather-APP-.git"
+  },
+  "author": "ala-bchir",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ala-bchir/Weather-APP-/issues"
+  },
+  "homepage": "https://github.com/ala-bchir/Weather-APP-#readme"
+}
