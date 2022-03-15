@@ -6,9 +6,13 @@ const { Server } = require("socket.io");
 const io = new Server(server)
 let request = require('request');
 
+app.use("/",express.static(__dirname))
+
 app.get("/", function(req,res){
     res.sendFile(__dirname + '/index.html')
+
 })
+
 
 
 // function getRandomInt(max) {
@@ -21,7 +25,7 @@ function sleep(n) {
     while (Date.now() - start < n);
 }
 
-let cities = ["casablanca",  "paris","monastir","sousse","toulouse"];
+let cities = ["casablanca",  "paris","monastir","sousse","toulouse","mahdia","dijon"];
 
 
 
@@ -61,12 +65,12 @@ io.on('connection', (socket)=>{
         // console.log(body)
         let cityName = jo.list[0].name
         let weather_status = jo.list[0].weather[0].description
-        let temp = Math.floor((jo.list[0].main.temp)- 273.15)+' c'
+        let temp = Math.floor((jo.list[0].main.temp)- 273.15)+' C°'
         console.log(cityName,weather_status,temp)
         io.emit('city', cityName)
         io.emit('status', weather_status)
         io.emit('temperature',temp)
-        sleep(500)
+        sleep(5000)
             
             
         })

@@ -3,58 +3,88 @@
   <head>
       <meta charset="utf-8">
       <title>Weather app </title>
+      <link rel="icon" type="image/png" href="">
+     <link rel="stylesheet" href="/style.css">
+
+        <script src="https://kit.fontawesome.com/9973e3922f.js" crossorigin="anonymous"></script>
   </head>
   <body>
 
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            
-            
-            let socket = io();
 
-            let receive = function(city){
-                
-                let h1 = document.getElementById('titre')
-                h1.innerHTML = city;
-                
-            }
-             socket.on('city',receive)
-
-            let receive2 = function(status){
-                let p = document.getElementById('p');
-                p.innerHTML = status;
-                
-            }
-            socket.on('status',receive2)
-
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        
+        
+        let socket = io();
+        
+        //display city name
+        let receive = function(city){
             
+            let h1 = document.getElementById('titre')
+            h1.innerHTML = city;
             
-            let receive3 = function(temp){
-                let t = document.getElementById('t');
-                t.innerHTML = temp;
-            }
-            socket.on('temperature',receive3)
-
-            // let socket = io();
-            // socket.on('city', function(msg) {
-            //     let h1 = document.getElementById('titre')
-            //     h1.innerHTML = msg;
-            // });
+        }
+            socket.on('city',receive)
+        
+            //display weather
+        let receive2 = function(status){
+            let p = document.getElementById('p');
+            p.innerHTML = status;
             
+        }
+        socket.on('status',receive2)
 
         
-            
+        //display temperature
+        let receive3 = function(temp){
+            let t = document.getElementById('t');
+            t.innerHTML = temp;
+        }
+        socket.on('temperature',receive3)
 
-            
-        
-            
-        </script>
 
-      
-        <h1 id="titre"></h1>
+        //test
+        // let socket = io();
+        // socket.on('city', function(msg) {
+        //     let h1 = document.getElementById('titre')
+        //     h1.innerHTML = msg;
+        // });
+    </script>
+
+    
+    <div id="contener">
+        <header>
+            <p id="id_header">WeatherApp</p>
+        </header>
+        <h1 id="titre">Paris</h1>
+        <p id="current_date"></p>
+        <h1 id="t">15 °C</h1>
+        <p id="p">Cloudy</p>
+        <span id="bar"></span>
+        <p >
+            <i class="far fa-compass"></i>
+        </p>
         
-        <p id="p">Clouds</p>
-        <p id="t">15 C</p>
+    </div>
+
+
+
+    <script>
+
+        let date = new Date();
+
+
+        let dateLocale = date.toLocaleString('fr-FR',{
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+        });
+
+        document.getElementById('current_date').innerHTML = dateLocale; 
+
+    </script>
+
     
         
   </body>
