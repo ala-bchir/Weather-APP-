@@ -1,17 +1,47 @@
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather app</title>
-    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
-</head>
-<body>
-    <script>
-        const socket = io('http://localhost:3001')
-        socket.on('connection')
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="utf-8">
+      <title>Weather app </title>
+  </head>
+  <body>
 
-    </script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            
+            
+            let socket = io();
+
+            let receive = function(city){
+                
+                let h1 = document.getElementById('titre')
+                h1.innerHTML = city;
+                
+            }
+
+            socket.on('city',receive)
+
+            let receive2 = function(status){
+                let p = document.getElementById('p');
+                p.innerHTML = status;
+                
+            }
+
+            socket.on('status',receive2)
+            
+
+        
+            
+
+            
+        
+            
+        </script>
+
+      
+        <h1 id="titre"></h1>
+        <p id="p"></p>
     
-</body>
+        
+  </body>
 </html>
