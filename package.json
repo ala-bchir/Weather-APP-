@@ -18,6 +18,7 @@
   "homepage": "https://github.com/ala-bchir/Weather-APP-#readme",
   "dependencies": {
     "express": "^4.17.3",
+    "request": "^2.88.2",
     "socket.io": "^4.4.1"
   }
 }
