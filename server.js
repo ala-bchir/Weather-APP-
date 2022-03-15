@@ -11,9 +11,9 @@ app.get("/", function(req,res){
 })
 
 
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-}
+// function getRandomInt(max) {
+//     return Math.floor(Math.random() * max);
+// }
 
 // sleep fct allows to send a request every "n" milliseconds
 function sleep(n) {
@@ -21,73 +21,65 @@ function sleep(n) {
     while (Date.now() - start < n);
 }
 
-let cities = ["casablanca", "tunis", "paris"];
+let cities = ["casablanca",  "paris","monastir","sousse","toulouse"];
 
 
 
-// const Id = setInterval(()=>{
 
+io.on('connection', (socket)=>{
+    console.log('connected')
+    for(let city of cities){
 
     
 
-//       if(i == 4) clearInterval(Id);
-
-//       i++
-// },1000)
-
-for(let city of cities){
-
-    const options = {
-        method: 'GET',
-        url: 'https://community-open-weather-map.p.rapidapi.com/find',
-        qs: {
-          q: city,
-          cnt: '1',
-          mode: 'null',
-          lon: '0',
-          type: 'link, accurate',
-          lat: '0',
-          units: 'imperial, metric'
-        },
-        headers: {
-          'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-          'x-rapidapi-key': '8a345fcc6amshe00c0e37b584ee8p13a2e9jsn8eafe56699c5',
-          useQueryString: true
-        }
-      };
-      
-      
-      
-      
-      
-      request(options, function (error, response, body) {
-          if (error) throw new Error(error);
-          let jo = JSON.parse(body); // convert body to a json object
+        const options = {
+            method: 'GET',
+            url: 'https://community-open-weather-map.p.rapidapi.com/find',
+            qs: {
+              q: city,
+              cnt: '1',
+              mode: 'null',
+              lon: '0',
+              type: 'link, accurate',
+              lat: '0',
+              units: 'imperial, metric'
+            },
+            headers: {
+              'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
+              'x-rapidapi-key': '82769fa3e5mshf3f542b33552eafp1b810fjsn27353da6bdf5',
+              useQueryString: true
+            }
+          };
           
+          
+          
+          
+          
+        request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        let jo = JSON.parse(body); // convert body to a json object
+        // console.log(body)
+        let cityName = jo.list[0].name
+        let weather_status = jo.list[0].weather[0].description
+        // console.log(cityName,weather_status)
+        io.emit('city', cityName)
+        io.emit('status', weather_status)
+        sleep(5000)
             
+            
+        })
     
-          let cityName = jo.list[0].name;
-          let weather_status = jo.list[0].weather[0].main;
-          console.log(cityName,weather_status);
-          sleep(3000)
-      
-          
-          io.on('connection', (socket)=>{
-              console.log('connected')
-              socket.on('disconnect', ()=>{
-                  console.log('disconnected')
-                  
-              })
-              io.emit('city', cityName)
-              io.emit('status', weather_status)
-              
-              
-          })
-      
-          
-          
-      });
-}
+            
+            
+        
+    }
+    socket.on('disconnect', ()=>{
+        console.log('disconnected')
+        
+    })
+});
+
+
 
 
 
