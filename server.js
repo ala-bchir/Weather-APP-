@@ -61,10 +61,12 @@ io.on('connection', (socket)=>{
         // console.log(body)
         let cityName = jo.list[0].name
         let weather_status = jo.list[0].weather[0].description
-        // console.log(cityName,weather_status)
+        let temp = Math.floor((jo.list[0].main.temp)- 273.15)+' c'
+        console.log(cityName,weather_status,temp)
         io.emit('city', cityName)
         io.emit('status', weather_status)
-        sleep(5000)
+        io.emit('temperature',temp)
+        sleep(500)
             
             
         })

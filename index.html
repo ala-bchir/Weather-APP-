@@ -18,16 +18,22 @@
                 h1.innerHTML = city;
                 
             }
-
-            socket.on('city',receive)
+             socket.on('city',receive)
 
             let receive2 = function(status){
                 let p = document.getElementById('p');
                 p.innerHTML = status;
                 
             }
-
             socket.on('status',receive2)
+
+            
+            
+            let receive3 = function(temp){
+                let t = document.getElementById('t');
+                t.innerHTML = temp;
+            }
+            socket.on('temperature',receive3)
 
             // let socket = io();
             // socket.on('city', function(msg) {
@@ -46,7 +52,9 @@
 
       
         <h1 id="titre"></h1>
-        <p id="p"></p>
+        
+        <p id="p">Clouds</p>
+        <p id="t">15 C</p>
     
         
   </body>
