@@ -4,6 +4,7 @@ const http = require('http');
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server)
+
 let request = require('request');
 
 app.use("/",express.static(__dirname))
@@ -12,18 +13,20 @@ app.get("/", function(req,res){
     res.sendFile(__dirname + '/index.html')
 
 })
+server.listen(3000, function(){
+  console.log('Server running at https://127.0.0.1:3000/');
+})
 
 
 
-// function getRandomInt(max) {
-//     return Math.floor(Math.random() * max);
-// }
+
 
 // sleep fct allows to send a request every "n" milliseconds
 function sleep(n) {
     const start = Date.now();
     while (Date.now() - start < n);
 }
+
 
 let cities = ["Casablanca",  "Paris","Monastir","Sousse","Toulouse","Mahdia","Dijon","Marseille"];
 
@@ -59,19 +62,16 @@ io.on('connection', (socket)=>{
           
           
           
-        request(options, function (error, response, body) {
+        request(options,async function (error, response, body) {
         if (error) throw new Error(error);
         let jo = JSON.parse(body); // convert body to a json object
-        // console.log(body)
+        
         let cityName = jo.list[0].name
         let weather_status = jo.list[0].weather[0].description
         let temp = Math.floor((jo.list[0].main.temp)- 273.15)+' C°'
-        // console.log(cityName,temp)
-        
-        io.emit('status', weather_status)
-        io.emit('temperature',temp)
-        io.emit('city', cityName)
-        sleep(5000)
+        console.log(cityName,weather_status,temp)
+        io.emit('emit', {'city':cityName,'weather':weather_status,'temp':temp})
+        await sleep(30000)
             
         })
     
@@ -93,6 +93,3 @@ io.on('connection', (socket)=>{
 
 
 
-server.listen(3000, function(){
-  console.log('Server running at https://127.0.0.1:3000/');
-})

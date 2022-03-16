@@ -18,41 +18,22 @@
     <script>
         
         
+        
+        
+        
         let socket = io();
-        
-        //display city name
-        let receive = function(city){
-            
-            let h1 = document.getElementById('titre')
-            h1.innerHTML = city;
-            
-        }
-        
-        socket.on('city',receive)   
-        
-            //display weather
-        let receive2 = function(status){
+        socket.on('emit', function(msg) {
+            console.log(msg);
+            let h1 = document.getElementById('titre');
+            h1.innerHTML = msg['city'];
             let p = document.getElementById('p');
-            p.innerHTML = status;
-            
-        }
-        socket.on('status',receive2)
+            p.innerHTML = msg['weather'];
+            let t = document.getElementById('t');
+            t.innerHTML = msg['temp'];
+        });
 
         
-        //display temperature
-        let receive3 = function(temp){
-            let t = document.getElementById('t');
-            t.innerHTML = temp;
-        }
-        socket.on('temperature',receive3)
-
-
-        //test
-        // let socket = io();
-        // socket.on('city', function(msg) {
-        //     let h1 = document.getElementById('titre')
-        //     h1.innerHTML = msg;
-        // });
+        
     </script>
 
     
