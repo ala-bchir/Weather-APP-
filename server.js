@@ -25,7 +25,7 @@ function sleep(n) {
     while (Date.now() - start < n);
 }
 
-let cities = ["casablanca",  "paris","monastir","sousse","toulouse","mahdia","dijon"];
+let cities = ["Casablanca",  "Paris","Monastir","Sousse","Toulouse","Mahdia","Dijon"];
 
 
 
@@ -66,12 +66,11 @@ io.on('connection', (socket)=>{
         let cityName = jo.list[0].name
         let weather_status = jo.list[0].weather[0].description
         let temp = Math.floor((jo.list[0].main.temp)- 273.15)+' C°'
-        console.log(cityName,weather_status,temp)
-        io.emit('city', cityName)
+        // console.log(cityName,temp)
         io.emit('status', weather_status)
         io.emit('temperature',temp)
-        sleep(5000)
-            
+        io.emit('city', cityName)
+        sleep(30000)
             
         })
     
