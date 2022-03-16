@@ -25,7 +25,7 @@ function sleep(n) {
     while (Date.now() - start < n);
 }
 
-let cities = ["Casablanca",  "Paris","Monastir","Sousse","Toulouse","Mahdia","Dijon"];
+let cities = ["Casablanca",  "Paris","Monastir","Sousse","Toulouse","Mahdia","Dijon","Marseille"];
 
 
 
