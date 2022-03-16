@@ -50,7 +50,7 @@ io.on('connection', (socket)=>{
             },
             headers: {
               'x-rapidapi-host': 'community-open-weather-map.p.rapidapi.com',
-              'x-rapidapi-key': '82769fa3e5mshf3f542b33552eafp1b810fjsn27353da6bdf5',
+              'x-rapidapi-key': 'b209e27b05mshe18481996bba2b3p105839jsn442355d06914',
               useQueryString: true
             }
           };
@@ -71,7 +71,7 @@ io.on('connection', (socket)=>{
         io.emit('status', weather_status)
         io.emit('temperature',temp)
         io.emit('city', cityName)
-        sleep(2000)
+        sleep(5000)
             
         })
     
