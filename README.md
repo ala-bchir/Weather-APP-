@@ -37,4 +37,4 @@ You can install all the required paquets with:
 Run
 ---
 
-Open a new Terminal at your installed folder , and use `node server.js` to run the server then  copy this link http://localhost:3000/ and paste int into your browser.
+Open a new Terminal at your installed folder , and use `node server.js` to run the server then [click here](http://localhost:3000/) or  copy this link "http://localhost:3000/" and paste int into your browser
