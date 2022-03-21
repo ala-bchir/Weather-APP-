@@ -23,6 +23,7 @@ function getRandomInt(max) {
   return Math.floor(Math.random() * max);
 }
 
+// cities table
 const cities = ['Casablanca', 'Paris', 'Monastir', 'Sousse', 'Toulouse', 'Mahdia', 'Dijon', 'Marseille'];
 
 function extract() {
