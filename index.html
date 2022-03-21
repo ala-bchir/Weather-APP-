@@ -15,27 +15,7 @@
 
 
     <script src="/socket.io/socket.io.js"></script>
-    <script>
-        
-        
-        
-        
-        
-        let socket = io();
-        socket.on('emit', function(msg) {
-            console.log(msg);
-            let h1 = document.getElementById('titre');
-            h1.innerHTML = msg['city'];
-            let p = document.getElementById('p');
-            p.innerHTML = msg['weather'];
-            let t = document.getElementById('t');
-            t.innerHTML = msg['temp'];
-        });
-
-        
-        
-    </script>
-
+    
     
     <div id="contener">
         <header>
@@ -54,23 +34,8 @@
 
 
 
-    <script>
-
-        let date = new Date();
-
-
-        let dateLocale = date.toLocaleString('fr-FR',{
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        });
-
-        document.getElementById('current_date').innerHTML = dateLocale; 
-
-    </script>
-
+   
     
-        
+    <script src="script.js"></script>    
   </body>
 </html>
